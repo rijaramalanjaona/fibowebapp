@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view contentType="text/html">
+<h:head>
+	<title>fibowebapp</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	
+<style>
+	#menus, #content {
+		border: 2px black solid;
+		padding: 5px;
+		font-family: verdana;
+		font-size: 12px;
+	}
+	
+	#menus {
+		width: 120px;
+	}
+	
+	#content {
+		width: 550px;
+		min-height: 300px;
+	}
+
+</style>
+	
+</h:head>
+
+<h:body id="body">
+
+	<table>
+		<tr>
+			<td valign="top">
+				<ui:include src="/menu.xhtml"/>
+			</td>
+			
+			<td valign="top">
+				<ui:insert name="mainContent" />
+			</td>
+		</tr>
+	</table>
+
+</h:body>
+</f:view>
+</html>

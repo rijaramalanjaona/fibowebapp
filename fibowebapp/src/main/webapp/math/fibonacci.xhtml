@@ -1,0 +1,74 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/template.xhtml">
+
+
+	<ui:define name="mainContent">
+		<div id="content">
+			<h1>Fibonacci</h1>
+			
+			<h:form>
+				<table>
+					<tr>
+						<td>Rang :</td>
+					
+						<td>
+							<h:selectOneMenu id="fiboselect" value="#{fiboBean.rang}">
+								<c:forEach var="entry" begin="1" end="90">
+									<f:selectItem itemLabel="#{entry}" itemValue="#{entry}" />
+								</c:forEach>
+								
+							</h:selectOneMenu >
+						</td>
+						
+						<td>
+							<h:commandButton id="fibobutton" value="Calculer" action="#{fiboBean.calculer}" />
+						</td>
+					</tr>
+				
+				</table>
+				
+				
+				<c:if test="#{fiboBean.valeur ne null}">
+					<p>La valeur de la suite de Fibonacci pour le rang <b>#{fiboBean.rang}</b> est <b>#{fiboBean.valeur}</b>.</p>
+				
+				</c:if>
+				
+				<c:if test="#{fiboBean.valeurs ne null}">
+				
+					
+					<p>
+					<table border="1">
+						<thead>
+							<tr>
+								<th>Rang</th>
+								<th>Valeur</th>
+								<th>Valeur approximative</th>
+								<th>Approximation</th>
+							</tr>
+						</thead>
+						
+						<tbody>
+							<c:forEach var="item" items="#{fiboBean.valeursInversees}">
+								<tr>
+									<td>#{item.rang}</td>
+									<td>#{item.valeurExacte}</td>
+									<td>#{item.valeurApproximative}</td>
+									<td>#{item.approximation}</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					</p>
+				</c:if>
+			
+				
+			
+			</h:form>
+		</div>
+	</ui:define>
+	
+</ui:composition>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.dvp</groupId>
+	<artifactId>fibowebapp</artifactId>
+	<packaging>war</packaging>
+	<version>1.0-SNAPSHOT</version>
+
+
+	<name>fibowebapp</name>
+	<description>fibowebapp</description>
+
+	<licenses>
+		<license>
+			<name>Copyright ©1995-2012 thierryler.com et Copyright ©2012 Developpez.com</name>
+			<comments>Les sources présentés sur cette page sont libres de droits, et vous pouvez les utiliser à votre convenance. Par contre cette page de présentation de ces sources constitue une oeuvre intellectuelle protégée par les droits d'auteurs. Copyright ©2011 Thierry Leriche-Dessirier. Aucune reproduction, même partielle, ne peut être faite de ce site et de l'ensemble de son contenu : textes, documents, images, etc sans l'autorisation expresse de l'auteur. Sinon vous encourez selon la loi jusqu'à 3 ans de prison et jusqu'à 300 000 E de dommages et intérêts. Cette page est déposée à la SACD.</comments>
+		</license>
+	</licenses>
+
+	<developers>
+		<!-- Thierry -->
+		<developer>
+			<name>Thierry Leriche-Dessirier</name>
+			<roles>
+				<role>Developper</role>
+			</roles>
+			<organization>ICAUDA</organization>
+		</developer>
+
+	</developers>
+
+
+	<properties>
+		<!-- Build -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.7</java.version>
+		<wtp.version>2.0</wtp.version>
+
+		<!-- Test -->
+		<junit.version>4.10</junit.version>
+
+		<!-- Servlet et pages -->
+		<mojarra.version>2.1.4</mojarra.version>
+		<jboss-el.version>2.0.1.GA</jboss-el.version>
+		<jstl.version>1.2</jstl.version>
+		<servlet-api.version>2.5</servlet-api.version>
+
+		<!-- Plugins -->
+		<maven-compiler-plugin.version>3.3.1</maven-compiler-plugin.version>
+		<maven-eclipse-plugin.version>3.3.1</maven-eclipse-plugin.version>
+		<tomcat-maven-plugin.version>1.1</tomcat-maven-plugin.version>
+
+		<!-- Pretty faces -->
+		<prettyfaces-jsf2.version>3.3.2</prettyfaces-jsf2.version>
+
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- JSF -->
+			<dependency>
+				<groupId>com.sun.faces</groupId>
+				<artifactId>jsf-api</artifactId>
+				<version>${mojarra.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.sun.faces</groupId>
+				<artifactId>jsf-impl</artifactId>
+				<version>${mojarra.version}</version>
+				<scope>compile</scope>
+			</dependency>
+
+			<!-- JSTL -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>${jstl.version}</version>
+			</dependency>
+
+			<!-- Servlet 2.5 -->
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>servlet-api</artifactId>
+				<version>${servlet-api.version}</version>
+				<scope>provided</scope>
+			</dependency>
+
+			<!-- Test -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>${junit.version}</version>
+				<scope>test</scope>
+			</dependency>
+			
+			
+			<!-- pretty faces -->
+			<dependency>
+				<groupId>com.ocpsoft</groupId>
+				<artifactId>prettyfaces-jsf2</artifactId>
+				<version>${prettyfaces-jsf2.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+
+
+	<dependencies>
+
+		<!-- servlet -->
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<scope>compile</scope>
+		</dependency>
+
+		<!-- JSTL -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		
+		<!-- pretty faces -->
+		<dependency>
+			<groupId>com.ocpsoft</groupId>
+			<artifactId>prettyfaces-jsf2</artifactId>
+		</dependency>
+		
+		<!-- JAX-WS RT -->
+	   <dependency>
+	       <groupId>com.sun.xml.ws</groupId>
+	       <artifactId>jaxws-rt</artifactId>
+	       <version>2.2.5</version>
+	   </dependency>
+   
+	</dependencies>
+
+	<build>
+		<finalName>fibowebapp</finalName>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>${maven-eclipse-plugin.version}</version>
+				<configuration>
+					<wtpversion>${wtp.version}</wtpversion>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<downloadSources>true</downloadSources>
+					<downloadJavadocs>true</downloadJavadocs>
+				</configuration>
+			</plugin>
+
+			<!-- Tomcat plugin for embedded tomcat -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>${tomcat-maven-plugin.version}</version>
+				<configuration>
+					<path>/${project.build.finalName}</path>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
